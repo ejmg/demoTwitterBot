@@ -4,4 +4,6 @@ A repo that shows anyone can make a twitter bot! This specific bot uses Python w
 
 Specifically demonstrated within, from applied code, is how to get a user object, a set of tweet objects, how to use the Cursor method of Tweepy, and some of the various data fields of user/tweet objects.
 
-Check out the blog post tutorial (Coming soon...)
+~~Check out the blog post tutorial (Coming soon...)~~ 
+
+## [Here's the guide](http://ageof.info/setting-up-twitter-bot-with-python-and-tweepy)

@@ -36,7 +36,7 @@ def getTimeline(api, user):
     this method gets the last 100 tweets from the user's timeline. This returns
     a list of tweet objects, check Twitter's docs to learn more about them.
     """
-    tweets = api.user_timeline("@{}".format(user.screen_name), count=100)
+    tweets = api.user_timeline(user.screen_name, count=100)
     tweets = [tweet for tweet in tweets]
     # this will print out the FULL contents of the first tweet object in the
     # list. This is useful to see the data fields available to use for other
@@ -60,7 +60,8 @@ def getLastTweet(api, user):
     try:
         # should not be possible...but anywho
         if len(tweets) == 1:
-            api.update_status("Was the last tweet my first? lol!")
+            api.update_status("This shouldn't be possible...#{}!"
+                              .format(random.randint(0, 10000)))
         else:
             tweet = tweets[0]
             # wait a minute...
@@ -116,11 +117,12 @@ if __name__ == "__main__":
                               random.randint(0, 10000)))
 
     # Now let's get the last tweet of yours...
+    getTimeline(api, user)
     getLastTweet(api, user)
 
     # let's search for the literal "hello world" <-- notice how I escape the
     # quotes below. This will get me the terms with that specific string.
-    searchResults = searchTweet(api, "\"Hello world \"")
+    searchResults = searchTweet(api, "\"Hello World \"")
 
     # lets tweet at one of the tweets we found with search
     replyHelloWorld(api, searchResults)

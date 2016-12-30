@@ -22,6 +22,15 @@ def setTwitterAuth():
     return api
 
 
+def tweetHelloWorld(api):
+    """
+    this method tweets hello world to twitter with your bot, Hello World!
+    """
+    api.update_status("This is an automated tweet"
+                      " using a bot! Hello, World! #{}"
+                      .format(random.randint(0, 10000)))
+
+
 def getTimeline(api, user):
     """
     this method gets the last 100 tweets from the user's timeline. This returns
@@ -79,7 +88,7 @@ def searchTweet(api, searchTerm):
     return searchResults
 
 
-def helloWorld(api, searchResults):
+def replyHelloWorld(api, searchResults):
     randomTweet = searchResults[random.randint(0, len(searchResults) - 1)]
     tweet = ("@{} This is a demo search for 'hello world' with a bot, hello"
              " world! #{}".format(randomTweet.user.screen_name,
@@ -89,24 +98,29 @@ def helloWorld(api, searchResults):
 
 
 if __name__ == "__main__":
+    # set up authorization with twitter via tweepy
     api = setTwitterAuth()
+    # tweet hello world!
+    tweetHelloWorld(api)
 
-    api.update_status("This is an automated tweet"
-                      " using a bot! Hello, World! #{}"
-                      .format(random.randint(0, 10000)))
+    # let's get the user object of your bot's account
     user = api.me()
     # let's print the user object so you can see the fields it has
     print(user)
-    # here's your username!
+
+    # here's your username! Notic how we accessed it?
     print(user.screen_name)
+    # Now let's use some of those fields to see your following/followers
     api.update_status("I have {} followers and follow {} accounts! #{}"
                       .format(user.followers_count, user.friends_count,
                               random.randint(0, 10000)))
 
+    # Now let's get the last tweet of yours...
     getLastTweet(api, user)
+
     # let's search for the literal "hello world" <-- notice how I escape the
     # quotes below. This will get me the terms with that specific string.
     searchResults = searchTweet(api, "\"Hello world \"")
 
-    # lets tweet at one of these
-    helloWorld(api, searchResults)
+    # lets tweet at one of the tweets we found with search
+    replyHelloWorld(api, searchResults)

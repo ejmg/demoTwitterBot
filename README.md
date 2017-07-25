@@ -1,4 +1,4 @@
-#demoTwitterBot
+# demoTwitterBot
 
 A repo that shows anyone can make a twitter bot! This specific bot uses Python with the Twitter API wrapper Tweepy to create a simple bot that shows the kind of data you can use from Twitter's API.
 
